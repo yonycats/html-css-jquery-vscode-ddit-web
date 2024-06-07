@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      span {
+        border: 2px dotted red;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    첫번째 : <input id="x" size="3" /> <br />
+    두번째 : <input id="y" type="text" size="3" /> 결과 : <input size="3" />
+    <br />
+
+    <input type="button" value="+" onclick="calc('+')" />
+    <input type="button" value="-" onclick="calc('-')" />
+    <input type="button" value="*" onclick="calc('*')" />
+    <input type="button" value="/" onclick="calc('/')" />
+
+    <br /><br />
+
+    <p>첫번째 값 : <span id="sp1"></span></p>
+    <p>두번째 값 : <span id="sp2"></span></p>
+    <p>결과 값 : <span id="sp3"></span></p>
+
+    <script>
+      let calc = function (p_oprt) {
+        // 최신 값을 가져옴
+        let xVal = parseInt(document.querySelector("#x").value);
+        let yVal = parseInt(document.getElementById("y").value);
+
+        let v_input = document.querySelector("input:nth-of-type(3)");
+        let v_spans = document.querySelectorAll("span"); // 유사배열로 요소 3개를 반환 받음
+
+        // 연산 함수들 정의
+        let f_add = function () {
+          return xVal + yVal;
+        };
+        let f_sub = function () {
+          return xVal - yVal;
+        };
+        let f_mul = function () {
+          return xVal * yVal;
+        };
+        let f_div = function () {
+          return xVal / yVal;
+        };
+
+        // 조건 - switch
+        let result;
+        switch (p_oprt) {
+          case "+":
+            result = f_add();
+            break;
+          case "-":
+            // result = f_sub();
+            break;
+          case "*":
+            result = f_mul();
+            break;
+          case "/":
+            result = f_div();
+            break;
+        }
+
+        // 결과 출력
+        v_input.value = result;
+        v_spans[0].innerText = xVal;
+        v_spans[1].innerText = yVal;
+        v_spans[2].innerText = result;
+      };
+    </script>
+  </body>
+</html>

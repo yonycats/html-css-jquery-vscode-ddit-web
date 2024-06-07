@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- input:radio -->
+    <!-- name을 공통적으로 적으면 그 name중, 1가지만 고를 수 있게 만들어짐, 택 1 -->
+    <input type="radio" name="gender" value="male"> 남성
+    <input type="radio" name="gender" value="female" checked> 여성
+    <!-- checked => 디폴트값으로 선택되어 표현됨 -->
+
+    <!-- 라디오를 선택하고 클릭했을 때, 값을 전달하는 이벤트 만들기 -->
+    <input type="button" value="선택" onclick="f_rdo()">
+
+
+    <br>
+    <br>
+
+    
+    <!-- input:checkbox -->
+    <input type="checkbox" name="hobby" value="html"> 에이치티엠엘
+    <input type="checkbox" name="hobby" value="css" checked> 씨에스에스
+    <!-- checked disabled => 디폴트값을 변경 불가능하게 해놓음 -->
+    <input type="checkbox" name="hobby" value="js" checked disabled> 자바스트립트
+    <input type="checkbox" name="hobby" value="java"> 자바
+    <input type="checkbox" name="hobby" value="server"> 서버
+
+    <button type="button" onclick="f_chk()">선택</button>
+
+
+
+    <script>
+    function f_rdo() {
+        // 두가지 중, 하나의 방식으로 주로 디버깅을 함
+        // console.log("콘솔로 출력하기");
+        // alert("경고창으로 출력하기");
+
+        // document를 썼기 때문에 유사배열로 값을 반환함
+        // 유사배열로 값을 반환할 때에는 속성을 꼭 지정해줘야 함
+        var v_rdo = document.getElementsByName('gender'); 
+        console.log("v_rdo :", v_rdo); // 체크 여부를 boolean으로 반환함
+        console.log("v_rdo[0] :", v_rdo[0]);
+        console.log("v_rdo[1] :", v_rdo[1]);
+
+
+        for (var i=0; i<v_rdo.length; i++) {
+            if(v_rdo[i].checked) {
+                // alert("선택한 성별은 : " + v_rdo[i].value);
+
+                // 이전 형제 previousSibling 속성 사용
+                alert("선택한 성별은 : " + v_rdo[i].nextSibling.data);
+            }   
+        }
+    }
+
+
+    function f_chk() {
+        // ES2 버전부터 사용해온 메서드
+        // name이 hobby인 객체들을 가져옴
+        var v_chk = document.getElementsByName('hobby');
+        // ES6(2015) 버전부터 사용된 메서드
+        // 타입이 checkbox인 객체들을 가져옴
+        var v_chk2 = document.querySelectorAll('[type=checkbox]');
+
+        console.log("v_chk.length : ", v_chk.length);
+        console.log(v_chk.length, ' | ', v_chk2.length);
+
+
+        var rst = []; // 여러 값을 저장할 공간
+        for (var i=0; i<v_chk.length; i++) {
+
+            if(v_chk[i].checked) {
+                // true인 항목에 대한 값만 저장해서 최종 출력
+                // rst.push(v_chk[i].value);
+
+                // <> 바깥에 있는 글 내용을 가져오는 방법
+                // rst.push(v_chk[i].nextSibling.data);
+                
+                // 출력문에서 공백을 제거함
+                rst.push(v_chk[i].nextSibling.data.trim());
+            }   
+        }
+        alert("나의 취미 : " + rst);
+    }
+    </script>
+
+</body>
+</html>

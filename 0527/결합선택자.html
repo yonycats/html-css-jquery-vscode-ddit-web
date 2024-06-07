@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+    body * {
+        border: 1px solid grey;
+        margin: 10px;
+    }
+
+    /* <!-- 자식 선택자 -->  */
+    /* 공백 (' ')으로 자식과 자손 선택 */
+    #parent div {
+        border-color : red;
+    }
+    /* 닫힘꺽쇠 ('>')로 자식만 선택 */
+    #parent>div {
+        border-color: blue;
+    }
+
+    /* <!-- 형제 선택자 -->  */
+    /* 더하기('+')로 기준 요소의 바로 다음 형제만 선택 */
+    #second + div,p {
+        /* second 바로 다음의 div,p를 선택 */
+        background-color: hotpink;
+    }
+    /* 물결('~')로 기준 요소의 모든 형제 선택 */
+    #second ~ div {
+        /* second 다음의 모든 div를 선택 */
+        background-color: darkturquoise;
+    }
+
+    </style>
+
+</head>
+<body>
+    
+    <!-- 들여쓰기를 통해 상하 계층구조를 한눈에 파악하기 쉽다 -->
+    <div id="parent">
+        <div>자식1</div>
+        <div id="second">자식2
+            <div>후손1</div>
+            <div>후손2</div>
+            <div>후손3</div>
+        </div>
+        <div>자식3</div>
+        <p>자식4</p>
+        <div>자식5</div>
+    </div>
+
+</body>
+</html>

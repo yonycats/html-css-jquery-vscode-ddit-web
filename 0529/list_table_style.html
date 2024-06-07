@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        ul {
+            list-style-type: circle;
+            list-style-image: url(../images/mark.png);
+            list-style-position: inside;
+        }
+
+        table {
+            width: 500px;
+            height: 140px;
+            /* border-collapse: collapse; */
+
+            /* border-collapse 기본값일 때만 사용가능 */
+            border-spacing: 5px; 
+
+            /* 테이블 내, 컨텐츠 존재 유뮤에 따라 프레임 show/hide */
+            /* empty-cells: hide; */
+
+            text-align: center;
+
+            /* 마지막 값에 대해서만 오른쪽 정렬시킴 */
+            text-align-last: right;
+
+            /* 영역 균등을 원할 때는 fixed, 컨텐츠에 따라 유동적인 변화를 원할 때는 auto */
+            table-layout: fixed;
+
+            /* 컨텐츠가 너무 길어서 fixed를 했는데 영역을 벗어날 때 사용 */
+            word-wrap: break-word;
+        }
+
+        td {
+            height: 60px;
+        }
+
+        .hol {
+            background-color: gold;
+        }
+
+        /* odd 홀수, even 짝수 */
+        tr:nth-child(even) {
+            background-color: darksalmon;
+        }
+
+        /* 후순위가 먼저 적용됨 */
+        tr:nth-child(odd) {
+            background-color: cornflowerblue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- ul>li*4 -->
+    <ul>
+    <!-- <ul style="list-style-type: square;"> -->
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    
+    <!-- table>tr*3>td*4 -->
+    <table border="1">
+        <tr class="hol">
+            <td>1111111111111111111111111</td>
+            <td></td>
+            <td>3333333333333333</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td></td>
+        </tr>
+        <tr class="hol">
+            <td></td>
+            <td>2</td>
+            <td></td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>2</td>
+            <td></td>
+            <td>4</td>
+        </tr>
+        <tr class="hol">
+            <td></td>
+            <td>2</td>
+            <td></td>
+            <td>4</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        /* 실행이 되지 않으면 인터넷 사용 기록을 삭제하고 새로고침 후 해볼 것 */
+
+        /* link > hover > visited > active 순서대로 적기, 순서가 중요 */
+        /* 요소의 상태에 따른 스타일 적용 */
+
+        /* 방문하기 전의 색 지정 */
+        a:link {
+            color: lime;
+        }
+        /* 방문하기 전의 배경색 지정 */
+        a:hover {
+            background-color: blue;
+        }
+        /* 방문하고 난 직후의 색 지정 */
+        a:visited {
+            background-color: orange;
+            color: red;
+        }
+        /* 눌렀을 때의 색 지정 */
+        a:active {
+            color: gray;
+        } 
+
+
+
+        /* 요소의 구조에 따른 스타일 적용 */
+        /* 자식 구조, -child 등의 위치를 특정할 때는 index는 1부터 시작핝다 */
+        tr:first-child {
+            background-color: blueviolet;
+        }
+        tr:nth-child(2n) {
+            background-color: aquamarine;
+        }
+        tr:nth-child(9) {
+            background-color: blue;
+        }
+        tr:last-child {
+            background-color: tomato;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    <!-- 가상클래스 : 요소의 상태 또는 구조에 의해 선택 방법을 제공한다  -->
+    <!-- table>tr*10>td -->
+<table>
+    <tr>
+        <!-- <td><a href="https://www.w3schools.com/">W3SCHOOLS</a></td> -->
+        <td><a href="https://www.megabox.co.kr/?NaPm=ct%3Dlwoc3st8%7Cci%3Dcheckout%7Ctr%3Dds%7Ctrx%3Dnull%7Chk%3D3dcc8469b11d5c37f626a335b92758205b00ebdd">메가박스</a></td>
+    </tr>
+    <tr>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>10</td>
+    </tr>
+</table>
+    
+</body>
+</html>

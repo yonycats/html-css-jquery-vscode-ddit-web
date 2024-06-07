@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="계산" onclick="f_fnc()">
+    <div>출력영역</div>
+
+<script>
+
+function f_fnc() {
+
+    // 입력받을 때 정수로 형변환을 진행할 경우, 취소를 통한 null값을 NaN으로 변환시키므로
+    // 아래 조건문을 제대로 처리할 수 없음
+    let v_su1 = prompt('수1을 입력하슈');
+    if(v_su1 == null) return; // 함수 내부에서 return 시 함수종료
+    
+    let v_su2 = prompt('수2를 입력하슈');
+    if(v_su2 == null) return;
+
+    // 문자로 입력했을 때 NaN을 반환
+    console.log(parseInt(v_su1));
+    
+    // Not a Number - 연산되지 못한 숫자가 아닌 오류값
+    // isNaN() - 내부적으로 형변환시켜 문자형 숫자는 -> 숫자로 형변환하고 NaN인지 확인
+    //                               문자는 -> 자동형변환으로 NaN 처리
+    // >> 인수로 숫자 대입시 false 반환 / 인수로 문자 대입시 true 반환
+    
+    // isNaN 인자를 시본적으로 정수로 변환 >> 숫자는 그대로, 문자는 형변환을 통해 NaN을 반환
+
+    // parseInt의 기능
+    // 1. 정수타입으로 변환
+    // 2. 시작 값이 숫자일 경우 문자와 분리시켜 숫자만 제공
+    
+    // if ( isNaN(parseInt(v_su1)) || isNaN(parseInt(v_su2)) ) {  -> 숫자+문자일 경우 들어감
+        
+    // 문자입력시 바로 함수종료
+    if ( isNaN(v_su1) || isNaN(v_su2) ) {
+        alert('숫자만 입력하세요!');
+        return;
+    }
+
+
+    let v_oprt = prompt('연산자를 입력하세요', '+, -, *, / 중에서만 입력!!');
+
+    let v_sum = 0;
+
+    // 조건문 1 - if
+    // 조건이 부합될 때까지 순차적으로 모든 경우의 수를 비교
+    // branch statement 기반 / 조건이 적을수록 유리
+    /*
+    // prompt는 기본적으로 문자열 타입이기 때문에 더하기 연산자는 유의해야한다.
+    // parseFloat ->  실수형으로 변환
+    if(v_oprt == '+') {
+        v_sum = parseInt(v_su1) + parseInt(v_su2);
+    } else if (v_oprt == '-') {
+        v_sum = v_su1 - v_su2;
+    } else if (v_oprt == '*') {
+        v_sum = v_su1 * v_su2;
+    } else if (v_oprt == '/') {
+        v_sum = v_su1 / v_su2;
+    } else {
+        alert('연산자 중 하나만 입력하세요!');
+        return f_fnc();
+    }
+    */
+
+
+    // 조건문 2 - switch
+    // case 조건 (조건식에 부등식은 사용불가)에 맞는 항목으로 바로 이동하는
+    // jump statement 기반 / 조건이 많을 때 유리
+    switch (v_oprt) {
+        case '+' :
+            v_sum = parseInt(v_su1) + parseInt(v_su2);
+            break;
+        case '-' :
+            v_sum = v_su1 - v_su2;
+            break;
+        case '*' :
+            v_sum = v_su1 * v_su2;
+            break;
+        case '/' :
+            v_sum = v_su1 / v_su2;
+            break;
+        default :
+            alert('연산자를 바르게 입력하세요.');
+            return f_fnc();
+    }
+
+     
+    // 출력정보 생성
+    v_rst = v_su1 + v_oprt + v_su2 + ' = ' + v_sum;
+
+    // 결과에 대한 값을 출력영역쪽에 출력하기
+    // 최종출력
+    document.querySelector('div').innerText = v_rst;
+}    
+    
+</script>
+    
+</body>
+</html>

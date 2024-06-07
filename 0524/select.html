@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- this => 자기참조변수 -->
+    <select id="sel" onchange="f_sel(this)">
+        <option value="0">선택</option>
+        <option value="hodu">호두</option>
+        <option value="namu">나무</option>
+        <option value="jindalae">진달래</option>
+        <option value="gaenari">개나리</option>
+        <option value="jadu">자두</option>
+        <option value="darae">다래</option>
+        <option value="gochu">고추</option>
+        <option value="oi">오이</option>
+    </select>
+
+
+<script>    
+function f_sel(p_this) {
+    // 테스트용으로 사용
+    console.log(sel); // 권장되지 않는 방법
+    console.log(document.getElementById("sel"));
+    // 적절한 용도로 사용
+    console.log(p_this);
+
+
+    // 모든 항목이 반환됨 
+    console.log(p_this.innerHTML);
+    // 콤보박스의 단일 선택 항목은 value로 간단히 얻을 수 있음
+    console.log(p_this.value);
+
+    // 선택된 항목의 index 정보를 얻기 - selectedIndex
+    console.log(p_this.selectedIndex);
+
+
+    // 요소 내부 정보 얻기 1
+    console.log("p_this.selectedIndex : ", p_this.options[p_this.selectedIndex].innerHTML);
+    alert(p_this.options[p_this.selectedIndex].innerHTML);
+
+    // 요소 내부 정보 얻기 2
+    var v_opt = document.querySelector('[value=' + p_this.value + ']');
+    console.log("얻기2 : " + v_opt.innerHTML);
+    alert("얻기2 : " + v_opt.innerHTML);
+}
+</script>
+
+</body>
+</html>

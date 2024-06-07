@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+
+        #plusDiv {
+            border: 2px dotted blue;
+            width: 40%;
+            height: 400px;
+            text-align: center;
+            justify-content: center;
+            line-height: 380px;
+            border-radius: 100px;
+            background-image: url(나무표효.jpg);
+            background-size: 120% 120%;
+        }
+
+        #plus {
+            background-color: yellow;
+            padding: 15px;
+            border: 3px dotted navy;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="plusDiv">
+        <span id="plus"></span> 
+    </div>
+
+    <script>
+
+        let su1 = parseInt(prompt("필수로 전달할 정보", "옵션으로 추가 전달할 정보"));
+        let su2 = parseInt(prompt("필수로 전달할 정보", "옵션으로 추가 전달할 정보"));
+        // prompt는 반환타입이 string 이므로, 
+        // 더하기 연산자를 이용한 덧셈 연산시 타입 변경이 필요함 - parseInt();
+        console.log(typeof su1);
+        console.log(su1 + su2);
+
+        // 과제 : 입력된 2값과 결과를 화면에 출력해보기
+        let plus = document.querySelector('#plus');
+        plus.innerText = (su1 + " + " + su2 + " = " + (su1 + su2));
+
+    </script>
+
+    
+</body>
+</html>

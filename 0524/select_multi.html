@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+<style>
+    div {
+        border: 4px dotted palevioletred;
+        padding: 40px;
+    }
+</style>
+</head>
+<body>
+    
+    <div></div>
+
+    <!-- 콤보박스를 확장하고 다중 선택할 수 있게 함 -->
+    <select id="sel" multiple size="7">
+        <option value="hodu">호두</option>
+        <option value="namu" selected>나무</option>
+        <option value="jindalae">진달래</option>
+        <option value="gaenari">개나리</option>
+        <option value="jadu">자두</option>
+        <option value="darae">다래</option>
+        <option value="gochu">고추</option>
+        <option value="oi">오이</option>
+    </select>
+    <input type="button" value="나를 누르면" onclick="f_sel()">
+
+
+    <div></div>
+
+    <div></div>
+
+
+<script>
+function f_sel() {
+    var v_sel1 = document.getElementById('sel');
+    var v_sel2 = document.querySelector('#sel');
+    console.log('v_sel1 : ',  v_sel1);
+    console.log('v_sel2 : ',  v_sel2);
+    // console.log(v_sel1.options);
+
+    var v_arr = []; // 값을 저장할 변수
+
+    for (var i=0; i<v_sel1.options.length; i++) {
+        // console.log('선택여sss부 >> ', v_sel1.options[i].selected); 
+
+        // 조건문 if를 통해 true에 해당하는 값만 최종출력
+        if (v_sel1.options[i].selected) {
+            v_arr.push(v_sel1.options[i].value);
+        }
+    }
+    console.log("선택한 항목들 : ", v_arr);
+
+    // 일치하는 요소가 여러 개인 경우, getElementsByTagName은 모든 요소를 반환
+    var v_div1 = document.getElementsByTagName('div')[2];
+    // 문서 내에서 지정된 선택자와 일치하는 첫 번째 요소를 반환
+    var v_div2 = document.querySelector('div');
+
+    // innerHTML을 get/set으로 사용함
+    v_div2.innerHTML = "<mark>선택한 항목들 " + v_arr +"</mark>";
+
+
+}
+</script>
+
+</body>
+</html>

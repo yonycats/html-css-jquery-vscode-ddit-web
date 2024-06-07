@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!-- 내부 스타일 정의 -->
+    <style>
+        img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- width는 요소에 정의된 너비 속성
+    style = whith는 인라인 스타일로 정의된 너비 속성 -->
+    <img src="양요섭1.png" width="400" alt="양요섭">
+
+    <!-- 요소 내부에 정의하는 인라인 스타일 정의 -->
+    <!-- 인라인 스타일은 우선순위는 가장 높되, 권장되지 않음 -->
+    <img src="양요섭1.png" style="width:80px"  alt="양요섭">
+
+    <!-- 현재 문서 위치 바깥의 파일에 접근하기 -->
+
+    <!-- 
+        / : 현재 작업 영역(웹 리소스 최상단)을 가리킴
+        ./ : 현재 위치를 나타냄
+        ../ : 현재 위치 기준으로 상위(폴더)를 가리킴
+     -->
+
+    <!-- 상대경로 : 현재 위치를 기준으로 경로를 설정하는 방식 -->
+     <img src="../images/양요섭2.png" alt="상대경로">
+     
+     <!-- 절대경로 : 웹페이지나 파일이 가지는 고유한 경로
+        * 프로젝트 외부에 존재하는 파일은 보안상 접근 불가
+        (=웹에서 로컬로 접근 불가) -->
+    <img src="D:\A_TeachingMaterial\05_JQuery\vscode\images\양요섭2.png" alt="절대경로">
+
+    <!-- 웹 이미지를 표현 -->
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5129%2F2022%2F10%2F17%2F171657625_20221017151801773.jpg&type=a340" alt="웹 이미지 경로">
+
+    <!-- root (/, 웹 리소스 시작 위치)에서부터 이미지 표현하기 -->
+    <img src="/images/양요섭2.png" alt="양요섭 귀여워">
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="f_fnc()">나는버튼</button>
+
+    <script>
+    function f_fnc() {
+        // 함수 실행 전 존재하는 요소를 지우므로 사용시 주의
+        // 문서에 표현된 다른 요소를 지워버리고 자신만 표현하기 때문에
+        // 테스트용으로만 주로 사용됨
+        document.write("<button>점메추</button>")
+        // 따옴표 내부에 같은 따옴표 사용시 탈출문자로 표현해서 문법오류를 해결함
+        document.write(" <img src=\"../images/ala.jpg\" alt=\"꽐라\"> ")
+        document.write(" <img src='../images/ala.jpg' alt='꽐라'> ")
+    }
+    </script>
+    
+</body>
+</html>

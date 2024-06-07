@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        [src] {
+            border: 4px dotted plum;
+        }
+        iframe[src] {
+            border: 4px dotted yellow;
+        }
+        img[src] {
+            border: 4px dotted red;
+        }
+
+
+        /* 우선순위를 적용하기 위해서 요소를 반드시 특정해야 한다 */
+
+        /* ^=속성값 >> 속성값으로 시작하는 */
+        img[src^='/'] {
+            /* img이면서, src가 /로 시작하는 것 지정 */
+            border-style: solid;
+            border-color: black;
+        }
+        
+        /* $=속성값 >> 속성 값으로 끝나는 */
+        img[alt$=a] {
+            /* img이면서, alt가, a로 끝나는 것 지정 */
+            border-color: lime;
+        }
+
+        /* *=속성값 >> 속성 값을 포함된 모든 것을 포함하는 */
+        /* ~=속성값 >> 완전히 분리된 속성 값만을 포함하는 */
+        iframe[title~=ifrm] {
+            /* title에 ifrm만 들어있는 것 지정 */
+            border: 2px double blue;
+        }
+
+        /* |=속성값 >> 속성값이거나 속성값-로 시작되는 */
+        [title|=ifrm] {
+            /* title이 ifrm이거나, ifrm- 인 것 지정 */
+            box-shadow: 4px 14px 15px deepskyblue; /* x축 y축 blur color */
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <img src="../images/ala.jpg" alt="koala">
+    <img src="/images/lion.jpg" alt="lion">
+    <img src="../images/bara6.webp" alt="bar"> <br><br>
+
+    <iframe src="../0521/list.html" frameborder="0" title="ifrmedia"></iframe> <br>
+    <iframe src="../0523/block-Inline_div-span.html" frameborder="0" title="ifrm-doc"></iframe> <br>
+    <iframe src="../0524/요소속성정보.html" frameborder="0" title="ifrm"></iframe>
+
+</body>
+</html>

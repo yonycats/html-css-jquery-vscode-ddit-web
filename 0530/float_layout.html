@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        div {
+            border-style: solid;
+            /* 바깥쪽 여백(margin)은 계산식에 포함시키지 못함 */
+            box-sizing: border-box;
+            margin: 5px;
+        }
+
+        #header, #footer {
+            background-color: yellow;
+            height: 10vh;
+        }
+
+        #footer {
+            clear: left;
+        }
+
+        #aside1, #aside2 {
+            background-color: aqua;
+            /* box-sizing 속성으로 해결되지 못하는 margin은 수동으로 빼주기 */
+            /* 마이너스/플러스 연산자 사용시 앞뒤로 공백 사용해야 함 (붙여쓰면 음수) */
+            width: calc(20% - 10px);
+            height: 80vh;
+            float: left;
+        }
+
+        #content {
+            background-color: saddlebrown;
+            width: calc(60% - 10px);
+            height: 80vh;
+            float: left;
+            /* opacity: .2; */
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div id="header"></div>
+    <div id="aside1"></div>
+    <div id="content"></div>
+    <div id="aside2"></div>
+    <div id="footer"></div>
+
+</body>
+</html>

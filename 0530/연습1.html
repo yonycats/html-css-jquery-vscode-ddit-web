@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        div {
+            width: 40vh;
+            height: 600px;
+            margin: 10px;
+            border: 5px dotted red;
+            float: left;
+            box-sizing: border-box;
+
+            /* height 속성이 부여되어야 사용가능 */
+            overflow: auto;
+        }
+
+        h1 {
+            background-color: pink;
+            /* padding: 3px; */
+        }
+
+        span {
+            background-color: skyblue;
+            color: red;
+            font-size: 1.4em;
+        }
+
+        div:last-of-type span {
+            color: olive;
+            font-weight: bold;
+        }
+
+        img {
+            width: 80%;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div>
+        <p>
+        <h1>사자</h1>
+        <img src="../images/lion.jpg" alt="사자">
+        <p>사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다.
+            사자는 식육목 고양이과 표범속으로 분류되는 <span>포유동물</span>이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다.
+            사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다
+        </p>
+        </p>
+    </div>
+    
+    <div>
+        <p>
+        <h1>호랑이</h1>
+        <img src="../images/ala.jpg" alt="사자">
+        <p>사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다.
+            사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. <span>현존하는 고양잇과</span> 동물 중에서 호랑이에 이어 두번째로 큰 종이다.
+            사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다
+            사자는 식육목 고양이과 표범속으로 분류되는 포유동물이다. 현존하는 고양잇과 동물 중에서 호랑이에 이어 두번째로 큰 종이다.
+        </p>
+    </div>
+
+</body>
+</html>

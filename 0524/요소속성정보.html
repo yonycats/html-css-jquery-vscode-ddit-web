@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+
+<style>
+    div {
+        border: 1px dashed orange;
+        padding: 40px;
+    }
+
+
+</style>
+
+    </head>
+    <body>
+        
+        <!-- input:button => type이 button인 input 요소 생성 -->
+        <!-- onclick으로 이벤트 속성 부여 -->
+        <input type="button" id="id_btn" name="nm_btn" value="클릭" onclick="f_btn()">
+
+        <div id = "id_div" onclick="f_div()">
+            클릭시 innerHTML 속성으로 요소 사이 컨텐츠 정보를 읽음
+        </div>
+
+
+        <script>
+            function f_btn() {
+                // 콘솔 창을 띄워서 클릭 버튼을 눌러보면, 
+                // 함수로 잘 연결되어 출력문이 나오는 것을 확인할 수 있음 (console.log("---------------"))
+                // console.log("---------------")
+                
+                // 요소의 id값으로 요소 그 자체의 정보를 얻음
+                // 각 태그는 하나의 요소이자 객체이며, 속성접근자(점 또는 괄호표기법) 사용으로
+                // 요소의 속성(Attribute)값에 접근 가능하다.
+                console.log(id_btn);
+                console.log("type : ", id_btn.type);
+                console.log("name : ", id_btn.name);
+                console.log("[name] : ", id_btn["name"]);
+                console.log("value : ", id_btn.value);
+                id_btn.value = "buttonClick!!";
+                console.log("onclick : ", id_btn.onclick);
+                
+                
+                // 위 같이 접근해서 속성 정보를 얻는 방식은 권장되지 않음.
+                
+                // 요소를 찾아 반환하는 메서드를 사용하는 것이 표준, 보편적인 방식임
+                // 자바스크립트에서 getElement* 메소드를 사용하여 요소를 반환받음
+                console.log("메소드로 요소 얻기>>", document.getElementById('id_btn'));
+                var v_btn = document.getElementById('id_btn');
+                console.log('요소의 타입 >>', v_btn.type);
+            }
+            
+            function f_div() {
+                // document 객체는 문서(웹 페이지), 그 자체를 가리킴
+                // 웹 페이지 내 html요소에 접근하려면 반드시 document객체로부터 시작한다
+                console.log(document);
+                console.log('head :',document.head);
+                console.log('head.innerHTML :',document.head.innerHTML);
+                console.log('head.outerHTML :',document.head.outerHTML);
+                
+                // var v_div = document.getElementById('id_div');
+                // 여러 요소를 유사배열의 형태로 모두 반환하기 때문에 
+                // 몇번째 배열의 요소를 반환받을 것인지 지정해줘야할 필요가 있음
+                var v_div = document.getElementsByTagName('div')[0]; 
+
+                console.log(v_div.innerHTML); // get
+                v_div.innerHTML = "어떠한 값을 대입해보자";  // set
+                // 클릭을 하는 순간, 세팅한 위의 값으로 내용이 바뀜
+
+                // id_div는 <div>의 id, <div> 안의 내부 정보를 읽어옴
+                // console.log("v_div : ", v_div);
+            }
+            
+
+            </script>
+
+        </body>
+        </html>

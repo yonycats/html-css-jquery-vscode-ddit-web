@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="javascript:f_grade()">등급확인</a>
+
+<script>
+
+function f_grade() {
+
+    let v_score = prompt("점수를 입력하세요", "100점 만점");
+    
+    if( isNaN(v_score) ) return; // 숫자가 아닐 때 함수종료
+    
+    console.log( parseInt(v_score/10) )
+    
+    switch ( parseInt(v_score/10) ) {
+        case 10:
+        case 9:
+            document.write('A등급');
+            break;
+        case 8:
+            document.write('B등급');
+            break;
+        case 7:
+            document.write('C등급');
+            break;
+        case 6:
+            document.write('D등급');
+            break;
+        default :
+            document.write('F등급');
+            break;
+    }
+}
+
+</script>
+
+</body>
+</html>

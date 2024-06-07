@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // 두가지 방식으로 쓸 수 있음
+        // document.addEventListener('DOMContentLoaded', function(){
+            window.addEventListener('load', function(){
+            var divValue2 = document.querySelector('div').innerHTML;
+            alert(divValue2 + '2');
+        })
+
+    </script>
+    
+    <div>아무거나</div>
+
+
+
+    
+    <script>
+        /* 문서에 대한 것들을 로딩시킨 후, 함수를 실행시킴, 
+        그냥은 요소가 아래에 있어 실행되지 않는다
+        보통은 아래쪽에 스크립트 영역을 두기 때문에 굳이 필요없음 */
+        window.onload = function() {
+        
+        // 인덱스 지정이 필요함
+        var divValue1 = document.getElementsByTagName('div')[0].innerHTML;
+        alert(divValue1 + '1');
+        }
+    </script>
+
+    <!-- <div>아무거나나나</div> -->
+
+</body>
+</html>

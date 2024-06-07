@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        /* 요소 선택자 */
+        div {
+            color: silver;
+            background-color: navy;
+        }
+
+        /* id 선택자 */
+        #elsa {
+            color: gold;
+        }
+
+        /* class 선택자 */
+        .dsn {
+            /* 우선 선택자 규칙 (id>class)에 따른 색 적용을 확인 */
+            color: aqua;
+            border: 3px dotted red;
+        }
+
+         /* 전체 선택자 */
+        * {
+            border: 2px double lime;
+            margin: 5px;
+        }
+        body * {
+            background-color: orange;
+        }
+
+        /* 그룹 선택자 */
+        div, p {
+            font-style: italic;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <!-- w3c의 권장 >> id는 페이지 내 유일한 값, class는 중복 적용 가능 -->
+    <!-- id는 class보다 적용 우선순위가 높음 -->
+    <div class="dsn">알라딘</div>
+    <div class="dsn">뮬란</div>
+    <div id="elsa" class="dsn">겨울왕국</div>
+    <div id="px">엘리멘탈</div>
+    <p class="dsn">라이언킹</p>
+
+</body>
+</html>

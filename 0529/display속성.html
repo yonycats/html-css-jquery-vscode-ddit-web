@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+<style>
+    div {
+        border-style: solid;
+        width: 50%;
+    }
+
+    span {
+        border: 2px solid red;
+    }
+
+    /* 너비 100% 공간을 사용 */
+    #block {
+        display: block;
+        /* width: 50%; */
+        height: 50px;
+    }
+
+    /* 자체적인 요소의 너비값만 사용하며 높이너비 적용불가 */
+    #inline {
+        display: inline;
+        width: 100px;
+        height: 100px;
+    }
+
+    /* 인라인 요소로서 평가되지만, block의 장점을 사용가능 */
+    #inline-block {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+    }
+
+    #none {
+        /* none => 디자인들을 숨김처리 할 수 있는 기능 */
+        display: none;
+    }
+
+</style>
+
+</head>
+<body>
+    
+    <div>대한사람 <span id="block">대한으로</span> 길이 보전하세</div>
+    <div>대한사람 <span id="inline">대한으로</span> 길이 보전하세</div>
+    <div>대한사람 <span id="inline-block">대한으로</span> 길이 보전하세</div>
+    <div>대한사람 <span id="none">대한으로</span> 길이 보전하세</div>
+
+</body>
+</html>

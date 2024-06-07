@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+<style>
+    table {
+        width : 300px;
+        height: 150px;
+        border-color: blue;
+    }
+    td {
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    
+    <!-- 4행 3열 테이블 만들기 -->
+    <!-- table>tr*4>td*3 -->
+    <table border="3">
+        <tr>
+            <th>1열</th>
+            <th>2열</th>
+            <th>3열</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1행 1열</td>
+            <td>1행 2열</td>
+            <td>1행 3열</td>
+        </tr>
+        <tr>
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+        <tr>
+            <td colspan="3">3행 1열</td>
+        </tr>
+    </table>
+
+</body>
+</html>
