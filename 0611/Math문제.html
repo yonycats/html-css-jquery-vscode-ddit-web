@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" placeholder="1 ~ 100 사이 숫자 입력">
+  <h4><a href="javascript:f_numGuess()">숫자 맞추기</a></h4>
+  <div>힌트: </div>
+<script>
+
+//1 ~ 100 범위의 랜덤 수 생성하기
+// const RND = Math.floor(Math.random()*100)+1;
+const RND = Math.ceil(Math.random()*100);
+  
+function f_numGuess(){
+
+  let su = document.querySelector('input').value;
+
+  if(su == RND){
+    //맞췄다
+  }else if(su < RND){
+    //힌트 제공: 더 큰 수를 입력하슈
+  }else{
+    //힌트 제공: 더 작은 수를 입력하슈
+  }
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</script>
+</body>
+</html>
