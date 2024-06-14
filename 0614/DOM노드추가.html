@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<style>
+div {
+  border: 2px solid purple;
+}
+</style>
+</head>
+<body>
+  <div id="parent">
+    <span>디브안에 스팬1</span>
+    <span>디브안에 스팬2</span>
+    <span>디브안에 스팬3</span>
+  </div>  
+
+<pre>
+[Node추가]
+- appendChild(node): 노드만 추가, 한개씩 추가, 반환값이 있음
+- append(node 또는 DOMString): 노드 및 DOMString추가, 여러개 추가, 반환값은 없음
+  (주의)DOMString으로 요소(태그)정의시 화면상에 태그를 파싱(해석)하지 않고 문자 그대로 표현함.. 
+
+*DOMString >> 자바스크립트에서 정의한 String
+
+[Node제거]
+- removeChild()
+- remove()
+
+[Node복사]
+- cloneNode(false): 기본값, 자식노드를 제외하고 속성만 복사
+- cloneNode(true): 자식노드 및 속성 함께 복사
+</pre>
+
+<script>
+  let v_parent = document.querySelector('#parent');
+  let v_child = document.querySelectorAll('span'); //유사배열
+
+  let v_addTxt1 = document.createTextNode("❤️💛🩷💚")
+  let v_addTxt2 = document.createTextNode("💙💜🩵🤎");
+
+  let v_txt = "<span>♥♡♥문자열자체로추가된다(태그로는 해석되어 표현되지 않음)</span>"; //DOMString
+  let v_addElem = document.createElement("span"); //<span></span>
+
+  //appendChild - 노드만, 한개만추가, 반환값있다
+  // let v_rtn = v_addElem.appendChild(v_addTxt1, v_addTxt2); //두번째 인자 완전히 무시..
+  // console.log("반환값>> ", v_rtn);
+  // v_parent.appendChild(v_txt); //not of type 'Node'이니까 노드만 사용가능
+  // v_parent.appendChild(v_addElem);
+
+  //append - 노드 및 돔스트링(문자열로만 표현) 가능, 여러개추가, 반환값없다 
+  let v_rtn = v_addElem.append(v_addTxt1, v_addTxt2);
+  // console.log("반환값>> ", v_rtn);
+  // v_parent.append(v_addElem);
+  v_parent.append(v_txt);
+
+
+  //remove()
+  // v_child[0].remove();
+
+  //부모노드.removeChild(자식노드)
+  v_parent.removeChild(v_child[1]);
+
+
+  //cloneNode(boolean) - default false
+  let clnFalse = v_parent.cloneNode();
+  let clnTrue = v_parent.cloneNode(true);
+  console.log(clnFalse);
+  console.log(clnTrue);
+  
+  let v_body = document.querySelector('body');
+  
+  // v_body.appendChild(clnTrue); //노드만 가능
+  // v_body.append(clnTrue); //노드와 돔스트링 가능
+  v_body.insertBefore(clnFalse, v_body.firstChild);
+
+
+
+</script>
+</body>
+</html>

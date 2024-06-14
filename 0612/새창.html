@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h4>열린 창(자식창)</h4>
+  <textarea id="new_text" rows="7" cols="30">
+    자식창 멀티라인
+  </textarea>
+  <button>보내기</button>
+
+<script>
+  //보내기 버튼 이벤트 부여하기
+  document.querySelector('button').addEventListener('click',f_cb); //함수 내부 함수 적용시 호출기호 사용안함
+
+  function f_cb(){
+
+    //자식영역 textarea정보 얻고 변수에 담아놓기
+    let newTxtVal = document.querySelector('#new_text').value;
+    //부모영역 textarea요소를 대상으로 자식정보 출력하기
+    //힌트) 자식의 위치에서 부모창을 가리키는 키워드 (opener == 부모창window)
+    let parentArea = opener.document.querySelector('#old_text');
+    parentArea.value = newTxtVal;
+  }
+
+  //엔터키 입력시 함수 호출
+  document.querySelector('#new_text').addEventListener('keydown',function(){
+    // alert(event.key); //비표준 방식으로 이벤트 키워드를 통해 이벤트 정보를 얻음
+    if(event.key == 'Enter'){ //대문자표기 지킬것
+      f_cb();
+    }
+  });
+
+
+</script>
+  
+</body>
+</html>
