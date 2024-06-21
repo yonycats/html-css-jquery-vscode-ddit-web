@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <div>
+    $('selector'[,context]) <br>
+    선택자를 검색할 범위 설정, 생략시 문서 전체에서 선택자를 검색
+  </div>
+
+  <form id="frm1">
+    <input type="text">
+  </form>
+  <form id="frm2">
+    <input>
+  </form>
+  <form id="frm3">
+    <input>
+  </form>
+
+<!-- jquery방식 적용을 위한 외부 스크립트 파일 불러오기 -->
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+  // 모든 input 대상으로 스타일이 적용되고 있음
+  $('input').css('background', 'yellow');
+
+  // jquery로 검색 영역을 특정해줄 것임
+  $('input', $('#frm2')).css('background', 'gray');
+
+  // 여러 메소드들을 체이닝, 연결해서 적용할 수 있음
+  $('input', $('#frm3'))
+    .css('background', 'lime')
+    .css('font-size', '2em')
+    .css('color', 'green')
+    .css('text-decoration', 'line-through')
+    .css('margin-top', '10px');
+
+  // form의 input 요소를 클릭하면 색이 변하게 하기
+  // $('form').on('click', function(){
+  //   $('input').css('background', 'red');
+  // });
+
+  // this 선택 범위로 설정하면, 클릭한 대상만 색이 변하게 된다.
+  $('form').on('click', function(){
+    $('input', this).css('background', 'red');
+  });
+
+  // this 선택 범위로 설정하면, 클릭한 대상만 색이 변하게 된다.
+  // 기본 색상을 정하고 클릭한 것만 바뀌도록 설정
+  $('form').on('click', function(){
+    $('input').css('backgroundColor', 'lime');
+    $('input', this).css('background', 'red');
+  });
+
+</script>
+  
+</body>
+</html>

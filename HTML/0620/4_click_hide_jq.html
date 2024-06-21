@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+<style>
+  button {
+    display: none;
+  }
+</style>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+  // jquery방식으로 3_click_hide.html 적용해보기
+
+// 예전 방식과 축약 방식 두가지로 사용가능
+// $(document).ready(function(){});
+$(function(){
+
+  let $h2s = $('h2');
+  
+  // jquery 이벤트 부여 = on('이벤트', 함수) 사용
+  $h2s.on('click', function(){
+    console.log(this);
+
+    // 숨기기 : display = none >> hide()
+    $(this).hide();
+
+    // 모든 대상 숨겨졌을 때 버튼 보이기
+    console.log ( $('h2:visible').length );
+    
+    if ( $('h2:visible').length == 0 ) {
+      // 버튼 보이기 : display = 요소의 원 레벨정보 >> show()
+      $('button').show();
+    }
+  });
+
+  // 버튼에 이벤트 부여하기 - on()
+  $('button').on('click', function(){
+    // h2 요소 보이기 - show()
+    $h2s.show();
+
+    // 버튼 숨기기 - hide()
+    $(this).hide();
+  });
+
+});
+
+</script>
+
+</head>
+<body>
+  
+  <h2>click_hide1</h2>
+  <h2>click_hide2</h2>
+  <h2>click_hide3</h2>
+  <button>나버튼</button>
+
+</body>
+</html>

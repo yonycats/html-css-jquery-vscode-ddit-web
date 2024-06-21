@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<!-- jquery방식 적용을 위한 외부 스크립트 파일 불러오기 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- 내부 스크립트 파일 -->
+<script>
+  // JS 방식 스타일 부여
+
+  // 1번 방식 : 이벤트 핸들러 방식
+  window.onload = function() {
+    // JS스타일 부여, 유사배열의 형태로 정보를 반환함, 변수에 넣기
+    let v_h4s = document.querySelectorAll('h4'); 
+    v_h4s[0].style.backgroundColor = 'blue';
+  };
+
+  // 2-1번 방식 : 이벤트 리스너 방식
+  window.addEventListener('load', function() {
+    // JS스타일 부여, 유사배열의 형태로 정보를 반환함, 변수에 넣기
+    let v_h4s = document.querySelectorAll('h4'); 
+    v_h4s[1].style.backgroundColor = 'skyblue';
+  });
+  
+  // 2-2번 방식 : 이벤트 리스너 방식, 컴퓨터 방식에서 상대적으로 빠름
+  window.addEventListener('DOMContentLoaded', function() {
+    // JS스타일 부여, 유사배열의 형태로 정보를 반환함, 변수에 넣기
+    let v_h4s = document.querySelectorAll('h4'); 
+    v_h4s[2].style.backgroundColor = 'yellow';
+  });
+
+  // 연습 : 모든 배열 색깔 똑같이 하기
+  window.addEventListener('DOMContentLoaded', function() {
+    let v_h4s = document.querySelectorAll('h4'); 
+
+    for (let i=0; i<v_h4s.length; i++) {
+      v_h4s[i].style.backgroundColor = 'red';
+    }
+  });
+
+  // $(document).ready(function(){}); // JQuery 버전 3.0부터 deprecate(지양하기 시작함)
+  // 아래처럼 축약해서 쓸 수 있음
+  $(function() {
+    let $h4s = $('h4'); 
+
+    for (let i=0; i<$h4s.length; i++) {
+      // 일괄 적용됨
+      $h4s.css('color', 'white'); 
+
+      // 단일 적용시 eq(index) : element queue 사용
+      $h4s.eq(0).css('color', '#00ff00'); // 단일 적용하기
+      $h4s.eq(3).css('backgroundColor', 'rgb(97%, 97%, 0%)'); // 단일 적용하기
+      console.log($h4s[i]);
+    }
+  }); 
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+  <h4>자바스크립트</h4>
+  <h4>제이쿼리</h4>
+  <h4>JavaScript</h4>
+  <h4>jQuery</h4>
+  
+</body>
+</html>

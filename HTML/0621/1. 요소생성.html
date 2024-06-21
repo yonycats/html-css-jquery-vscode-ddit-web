@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <input type="button" value="문자열로 일괄 생성하기">
+  <input type="button" value="요소만 생성 후 속성 지정하기">
+  <div></div>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+
+// 동적 요소 생성
+// javascript 방식
+// 1. document.createElement('element')
+// 2. DOMString >> js 문자열 방식 "<element>"
+// 추가시 appendChild(), append(node와 DOMString)
+// 이때 DOMString으로 표현된 태그는 해석되지 못함 (=그냥 문자열로 표현)
+// DOMString 방식의 동적 요소는 innerHTML, insertAdjacentHTML()등을 사용하기
+
+
+// JQuery 방식
+// 1. $("<요소 및 속성과 텍스트 정보 모두 기술>")
+// 2. $("<요소만>", {속성과 텍스트를 객체 기술 방식(key:value)으로})
+// 추가 시 append(), html()
+// js와 JQuery에서 append() 사용은 태그로 해석됨의 차이점을 보임
+// - 제이쿼리에서 사용하는 append()는 태그로 해석
+// - 자바스크립트에서는 그냥 문자로만 표현
+
+
+
+// 문자열로 일괄 생성하기
+// $('input')[0].on('click', function(){ => [0] 대신 eq(0)을 씀
+$('input').eq(0).on('click', function(){
+
+  let $pTag = $("<p title=\"♡\" onclick='f_fnc(this)';>Hi, JQuery!!</p>")
+
+  // 제이쿼리에서 innerText 속성을 쓸 수 없음, 대체 텍스트 활용
+  // JS - innerHTML속성, JQ - html() 로 대체 가능
+  $('div').html($pTag);
+
+  // appendChild()는 자바스크립트 전용 메서드
+  // 제이쿼리에서 사용하는 append()는 태그로 해석
+  // (자바스크립트에서는 그냥 문자로만 표현)
+  $('div').append($pTag);
+});
+
+
+// 요소만 생성 후에 속성을 별도로 지정하기 = $("태그", {속성들})
+$('input').eq(1).on('click', function(){
+
+  let $pTag = $("<p></p>",{
+    // title은 해당 텍스트 요소에 마우스를 갖대대면 뜸
+    title : '☆★☆',
+    // 해당 텍스트를 클릭하면 적용되는 함수
+    // 아래처럼 하면 버튼을 누르자마자 적용이 됨, 클릭 활성화
+    // 'onclick' : function(){
+    'click' : function(){
+      // this.style.colot = 'gold',
+      $(this).css('color', 'red').css('text-shadow', '2px 2px 2px orange')
+    },
+    'text' : '하이, 제이쿼리!!' // 마지막 항목에는 구분자가 없음
+  });
+
+  $('div').html($pTag);
+  // html으로 먼저 요소를 추가를 하고,
+  // append로 동일한 요소를 다시 넣으면 추가가 되는게 아니라
+  // 기존 요소를 지우고 덮어씌워진다.
+  $('div').append($pTag);
+});
+
+
+// 0번 인덱스에 연결된 함수
+function f_fnc(p_this) {
+  // 자바스크립트 방식
+  p_this.style.backgroundColor = 'navy';
+  p_this.style.color = 'white';
+
+  // 제이쿼리 방식
+  $(p_this).css('backgroundColor', 'brown')
+  $(p_this).css('color', 'gold')
+
+
+
+
+}
+
+</script>
+
+</body>
+</html>

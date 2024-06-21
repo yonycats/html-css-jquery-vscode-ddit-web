@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  img {
+    width : 200px;
+    height : 200px;
+  }
+</style>
+
+</head>
+<body>
+  
+  <!-- <button>정적인 이미지 추가 버튼</button> -->
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  // 동적인 버튼을 담은 변수 만들기
+  let v_btn = $('<button>동적인 이미지 추가 버튼</button>')
+  // 변수를 바디에 넣어서 출력하기
+  $('body').append(v_btn);
+
+  // 자바스크립트식
+  let bttn = document.querySelector('button');
+  // 제이쿼리로 만든 변수 다시 바꿀 때
+  $(bttn).on('click', function(){
+    $('body').append('<hr>');
+    // 이미지 요소 추가 일괄 생성하기
+    // 이벤트는 외부 함수를 호출했음
+    let v_img = $("<img src='../../images/ala.jpg' alt='꽐라' onclick=fnc(this)>")
+    $('body').append(v_img);
+    let v_img3 = $("<img src='../../images/lion.jpg' alt='사자' onclick=fnc(this)>")
+    $('body').append(v_img3);
+
+    $('body').append('<hr>');
+
+    // 이미지 분리 요소 생성하기
+    let v_img2 = $("<img>", {
+      src : '../../images/ala.jpg',
+      alt : '꽐라',
+      click : function () {
+        $(this).css('border', '3px dotted green');
+      }
+    });
+
+    let v_img4 = $("<img>", {
+      src : '../../images/lion.jpg',
+      alt : '사자',
+      click : function () {
+        $(this).css('border', '3px dotted green');
+      }
+    });
+
+    // 덮어쓰고 버튼을 없애고 싶을 때 html 사용
+    // 이미지가 1개가 나옴 - 기존 내용에 덮어썼기 때문에
+    // $('body').html(v_img2);
+
+    // 덮어쓰지 않고 버튼을 남기고 싶을 때 append 사용
+    // 이미지가 2개가 나옴 - 덮어쓰지 않았기 때문에
+    $('body').append(v_img2);
+    $('body').append(v_img4);
+  });
+
+  function fnc(p_this) {
+    $(p_this).css('border', '2px dotted red')
+  }
+
+
+
+</script>
+
+</body>
+</html>

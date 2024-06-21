@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<style>
+#dropArea {
+  border: 4px ridge aquamarine;
+  height: 400px;
+}
+img {
+  width: 150px;
+}
+</style>
+</head>
+<body>
+  <!-- 드래그 대상은 외부에서 가져오므로 draggable속성 적용대상은 없음 -->
+  <div id="dropArea"></div>  
+
+<script>
+  let v_drop = document.querySelector('#dropArea');
+
+  /*
+    브라우저는 읽을 수 있는 파일이 오면 새 탭을 열어 보여주는데,
+    dragover(요소가 겹쳐지는 순간)와 drop(요소에 내려놓는 순간) 두 이벤트를 막아야만 
+    브라우저가 자동으로 파일을 열어주는 것을 막을 수 있다
+  */
+  v_drop.addEventListener('dragover',function(e){
+    e.preventDefault();
+  });
+  v_drop.addEventListener('drop',function(e){
+    e.preventDefault();
+
+    //FileAPI 의 File객체 사용으로 파일 정보 얻음
+    let v_file = e.dataTransfer.files[0]; //하나의 파일을 지정
+    console.log(v_file);
+
+    //FileAPI의 FileRaader객체 사용으로 파일을 가공하고 처리결과를 얻어
+    //최종적인 데이터를 화면으로 출력예정
+
+    let rd = new FileReader();
+    // rd.readAsDataURL(v_file); //파일을 읽고 처리
+    // console.log(rd.result); //처리된 결과물을 반환하는데 null이 반환됨
+
+
+    //파일을 읽고 처리완료될때까지 대기하다가 완료되면
+    rd.onload = function(){
+      //안전하게 결과를 반환받음
+      console.log(rd.result);
+
+      //DOM의 인터페이스 활용방식으로 이미지 생성- createElement()
+      let v_img = document.createElement('img'); //<img>
+      v_img.src = rd.result;
+      v_img.alt = "아무거나";
+      // v_img.width = 50;
+      // v_img.style.width = "50px";
+      v_img.setAttribute('style','width: 50px');
+
+      v_drop.append(v_img); //추가로 드롭 완성
+    };
+    rd.readAsDataURL(v_file);
+  });
+  
+  //영역 외 모든 창의 구성원을 대상으로 이벤트막음
+  window.addEventListener('dragover',function(e){
+    e.preventDefault();
+  });
+  window.addEventListener('drop',function(e){
+    e.preventDefault();
+  });
+  
+  
+  
+
+</script>
+  
+  
+</body>
+</html>

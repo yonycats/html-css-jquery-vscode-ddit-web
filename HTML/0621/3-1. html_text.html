@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+
+  $(function(){
+    // 요소를 가져오는 것에서만 차이를 보이고
+    // 적용되는 것에서는 일괄로 정리가 됨
+
+    // 제이쿼리에서 이벤트 주기 -> on 사용
+    $("[value='text()']").on('click', function(){
+      // text()
+      // 모든 요소를 대상으로
+      // 태그를 제외한 정보를 얻음
+      console.log ($('p').text() );
+      $('p').text("<p>뭐넣지</p>");
+    });
+
+    $("[value='html()']").on('click', function(){
+      // html()
+      // 모든 요소 중 첫번째만 대상으로
+      // 태그를 포함한 정보를 얻음
+      console.log( $('p').html() );
+      $('p').html("<mark>점심뭐먹?</mark>");
+    });
+
+    $("[value=\"val()\"]").on('click', function(){
+      // val() = js value 대체 (value : 입력 양식 요소의 정보 get/set 속성)
+      // 모든 요소 중 첫번째만 대상으로 값을 얻음
+      // button의 첫번째 값(value)인 text()가 출력됨
+      console.log( $('input').val() );
+      $('input').val("일괄로 다 바뀜");
+    });
+  });
+
+</script>
+
+</head>
+<body>
+  
+  <p>1<span></span>★</p>
+  <p>2<span></span>◆◆</p>
+  <p>3<span></span>▲▲▲</p>
+
+  <input type="button" value="text()">
+  <input type="button" value="html()">
+  <input type="button" value="val()">
+
+</body>
+</html>
