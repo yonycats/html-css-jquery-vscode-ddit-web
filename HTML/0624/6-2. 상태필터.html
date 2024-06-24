@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h4>:checked : selected</h4>
+  <span>취미 : </span>
+  <input type="checkbox" value="여행">여행
+  <input type="checkbox" value="v로그">v로그
+  <input type="checkbox" value="베이킹" checked>베이킹
+  <input type="checkbox" value="슬라임">슬라임
+  <input type="checkbox" value="골프">골프
+  <input type="button" value="선택">
+  <div id="hobbyThis"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- *** 과제 : 아래 스크립트 부분 자바스크립트로 변경해서 출력하기 -->
+<!-- 5.24일 입력요소 rdo_chk.html 문서 참고 -->
+
+<script>
+  $(':button').on('click', function(){
+    // 선택된 항목을 변수에 모두 담아 최종 출력
+    let hobby = []; // 빈 배열 선언
+
+    // 입력 양식 선택자 : 상태 필터
+    // v를 쓰고 싶을 경우에는 반드시 i, v를 함께 써야함, 첫번째 인자는 index로 고정되어 있음 (각 위치별 정보 다름)
+    // checkbox 요소에서 checked가 된 것(선택된 것)을 지정
+    $(':checkbox:checked').each(function(i, v){ // 사용하지 않을 경우 파라미터를 선언할 필요 없음
+      // 출력 값 확인하기
+      // console.log( $(this).val() ); // 콜백 함수의 두번째 인자도 동일한 결과 반환
+      // console.log( $(v).val() );
+
+      // hobby 변수에 선택한 값 넣기
+      // hobby.push( $(this).val() );
+      // hobby.push( $(v).val() );
+      hobby[i] = $(this).val();
+    });
+    // console.log('나의 취미는 ' + hobby);
+    // $('body').append('<br> 나의 취미는 ' + hobby);
+
+    $('#hobbyThis').text("");
+    $('#hobbyThis').append('나의 취미는 ' + hobby);
+  });
+
+</script>
+
+<hr>
+<!-- script를 여러개로 적용하면 위 script의 함수는 아래의 내용에 함수가 적용되지 않는다. -->
+
+<span>봄소식 : </span>
+<select id="sel" multiple size="5">
+  <!-- <option">선택</option> -->
+  <option>개나리</option>
+  <option>진달래</option>
+  <option>민들레</option>
+  <option>목련</option>
+  <option>벚꽃</option>
+</select>
+<button>선택</button>
+<br>
+<div id='flowerThis'></div>
+
+<script>
+  // $('select').on('change', function(){
+  //   // selectbox(combobox)의 단일 정보는 value 속성으로 간단히 받을 수 있음
+  //   if( $(this).val() == '선택' ) return;
+  //   alert( $(this).val() );
+  // });
+
+  // 이렇게만 쓰면 <input type="button" value="선택"> 여기의 버튼까지 불러오기 때문에 'button:button'으로 지정
+  // $(':button').on('click', function(){
+  $('button:button').on('click', function(){
+    // alert('어디로 이벤트가 적용될까요?');
+
+    let flower = [];;
+
+    // 'select option:selected' -> 선택할 요소들을 지정
+    $('select option:selected').each(function(){
+      console.log(this);
+      console.log(this.innerText);
+      console.log( $(this).val() );
+
+      // flower.push(this.innerText);
+      flower.push( $(this).val() );
+    });
+    // $('#flowerThis').text(""); // 영역 초기화하기
+    document.querySelector('#flowerThis').innerText = ""; // 영역 초기화하기
+
+    $('#flowerThis').append('좋아하는 꽃은 ' + flower);
+  });
+  
+</script>
+
+</body>
+</html>

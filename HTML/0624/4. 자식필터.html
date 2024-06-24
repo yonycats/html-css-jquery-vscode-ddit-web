@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+ul {
+  display: inline-block;
+}
+td {
+  padding: 10px;
+}
+</style>
+<script>
+$(function(){
+  // 서로 다른 대상(부모)에 속한 각 요소의 첫번째 항목
+  $('li:first-child').css('color','blue');
+  // 서로 다른 대상(부모)에 속한 각 요소의 마지막 항목
+  $('li:last-child').css('color','red');
+  
+  // first()는 대상요소 전체 중 가장 첫번째 항목
+  // last()는 대상요소 전체 중 가장 마지막 항목
+  // 전체 중에서 첫번째 요소, 선택되는 항목은 반드시 하나
+  $('li').first().css('border-style','dotted');
+  // 전체 중에서 마지막 요소, 선택되는 항목은 반드시 하나
+  $('li').last().css('border-style','solid');
+  
+
+  // 테이블에 배경색 넣기
+  // child관련 속성 index 1부터 시작
+
+  // td 중 각 행의 마지막 자식 영역 지정
+  $('td:last-child').css('background','olive');
+  // td 중 각 행의 3번째 index 영역 지정
+  $('td:nth-child(3)').css('background','gray');
+  
+  // 배수 칸마다+시작위치
+  // index 4번째부터 시작되는데, 2칸(2n)마다 적용한다.
+  $('td:nth-child(2n+4)').css('background','red');
+  // index 2번째부터 시작되는데, 3칸(3n)마다 적용한다.
+  $('td:nth-child(3n+2)').css('background','blue');
+  
+  // tr(각 행)의 첫번째 자식 영역을 지정
+  // 레이어 구조상 td가 tr을 덮음
+  $('tr:first-child').css('background','gold');
+  // tr(각 행)의 첫번째 자식 영역에서 모든 td 영역을 지정
+  // td 영역까지 지정해서 모든 영역을 지정
+  $('tr:first-child td').css('background','lime');
+  // tr의 3번째 자식 td를 지정 
+  $('tr:nth-child(3) td').css('background','skyblue');
+  // tr의 3번째 자식 td에서 index 2부터 6까지의 영역을  지정
+  $('tr:nth-child(3) td').slice(2,7).css('background','yellow');
+  
+  // 행 기준 홀수,짝수
+  $('tr:nth-child(odd) td').css('background','black'); // 홀수
+  $('tr:nth-child(even) td').css('background','pink'); // 짝수
+  // 열 기준 홀수,짝수
+  $('td:nth-child(odd)').css('background','purple'); // 홀수
+  $('td:nth-child(even)').css('background','yellow'); // 짝수
+  
+  // only-child : 유일한 자식을 지정
+  // table이 유일하게 자식인 곳의 영역을 지정
+  $('table:only-child').css('border','5px dashed orange');
+});
+  </script>
+</head>
+<body>
+  <h4>자식필터</h4>
+  <ul>
+    <li>first-child1</li>
+    <li>last-child1</li>
+    <li>nth-child1</li>
+    <li>only-child1</li>
+  </ul>
+  <ul>
+    <li>first-child2</li>
+    <li>last-child2</li>
+    <li>nth-child2</li>
+    <li>only-child2</li>
+  </ul>
+
+  <hr>
+  <div> <!-- table이 유일한 자식이 되도록 요소 만들기 -->
+    <table border="1">
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+    </table>
+  </div>
+<hr>
+  <div>
+    <table>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td></td><td></td><td>3</td>
+        <td></td><td></td><td></td>
+        <td></td><td></td><td>마</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

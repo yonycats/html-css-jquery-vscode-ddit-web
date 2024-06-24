@@ -85,6 +85,18 @@
         // console.log(v[0]); // 객체의 순차적인 속성을 제공, String, 기본타입 문자열 제공
         // console.log(i); // key
       });
+
+      // 선택자 문법으로 선택
+      // 선택자 대상 문법에 객체는 적용이 가능함
+      $(arr).each(function(){
+        console.log(this);
+      });
+
+      // 에러남 -> 객체 대상 문법에 선택자를 지정시 오류가 남
+      // $.each('p', function(){
+      //   console.log(this);
+      // });
+      
     });
 
     
