@@ -17,7 +17,7 @@
   req.onreadystatechange = function(){
     console.log(req.readyState); // 응답 상태 확인
     console.log(req.status); // 응답 상태 확인
-
+ 
     // 서버에서 처리 및 응답 준비 완료(4)이면서, 상태코드 '성공/sucess'일 때(200)
     if (req.readyState == 4 && req.status == 200) {
       // 응답 결과 받음
