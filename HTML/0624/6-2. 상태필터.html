@@ -22,7 +22,8 @@
 <!-- *** 과제 : 아래 스크립트 부분 자바스크립트로 변경해서 출력하기 -->
 <!-- 5.24일 입력요소 rdo_chk.html 문서 참고 -->
 
-<script>
+<!-- 제이쿼리 방식 -->
+<!-- <script>
   $(':button').on('click', function(){
     // 선택된 항목을 변수에 모두 담아 최종 출력
     let hobby = []; // 빈 배열 선언
@@ -46,8 +47,32 @@
     $('#hobbyThis').text("");
     $('#hobbyThis').append('나의 취미는 ' + hobby);
   });
+</script> -->
 
+
+
+
+<!-- 자바스크립트 방식으로 위를 변경 -->
+<script>
+  document.querySelector('[type="button"]').addEventListener('click', function(){
+
+    let v_arr = [];
+    let v_chks = document.querySelectorAll('[type="checkbox"]');
+    
+    for (let i=0; i<v_chks.length; i++) {
+      if (v_chks[i].checked) {
+        // 배열 변수에 체크 항목만 추가
+        v_arr.push(v_chks[i].value);
+      }
+    }
+    document.querySelector('#hobbyThis').innerText = '나의 취미는? >>> ' + v_arr;
+  });
 </script>
+
+
+
+
+
 
 <hr>
 <!-- script를 여러개로 적용하면 위 script의 함수는 아래의 내용에 함수가 적용되지 않는다. -->
@@ -65,7 +90,11 @@
 <br>
 <div id='flowerThis'></div>
 
-<script>
+
+
+
+<!-- 제이쿼리 방식 -->
+<!-- <script>
   // $('select').on('change', function(){
   //   // selectbox(combobox)의 단일 정보는 value 속성으로 간단히 받을 수 있음
   //   if( $(this).val() == '선택' ) return;
@@ -93,8 +122,32 @@
 
     $('#flowerThis').append('좋아하는 꽃은 ' + flower);
   });
-  
+</script> -->
+
+
+
+
+
+<!-- 자바스크립트 방식으로 위를 변경 -->
+<script>
+  document.querySelector('button').onclick = function(){
+    
+    let v_arr = [];
+    let v_opts = document.querySelectorAll('#sel option')
+
+    for (let i=0; i<v_opts.length; i++) {
+      if (v_opts[i].selected) {
+        // 선택항목만 정보 넣기
+        v_arr[v_arr.length] = v_opts[i].innerText;
+      }
+    }
+    document.querySelector('#flowerThis').innerText = v_arr;
+  };
 </script>
+
+
+
+
 
 </body>
 </html>

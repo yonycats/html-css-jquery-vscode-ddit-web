@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <input value="점메추">
+  
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  // keyup : 키가 눌렸다 떼지는 순간 이벤트 발생
+  $('input').on('keyup', function(){
+    // attribute는 html 요소에 적용하는 정보로서 값은 변하지 않는 정적 상태를 제공한다.
+    // 기존의 정보가 출력됨
+    console.log("1 : " + this.getAttribute('value') );
+    console.log("2 : " + $(this).attr('value') );
+
+    // property는 DOM요소에 적용된 정보로서 값이 변하는 동적 상태 제공한다.
+    // 변경된 정보가 출력됨
+    console.log("3 : " + this.value );
+    console.log("4 : " + $(this).prop('value') );
+  });
+
+</script>
+
+</body>

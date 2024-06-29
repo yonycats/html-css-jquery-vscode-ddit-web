@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  div {
+    height: 80vh;
+    background-color: black;
+    color: white;
+  }
+</style>
+
+</head>
+<body>
+  
+  <div></div>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+
+  // 이벤트핸들러/리스너는 매개변수를 통해 이벤트 객체(표준방식)을 전달받음
+  // event 키워드를 통해 이벤트 정보를 자동으로 할당받는 방식은ms 에 의해 구현됨
+  //  >> 많이 사용되지만 브라우저 표준이 아니므로 표준방식인 이벤트객체 활용을 권장
+
+
+  $('div').on('click', function(e){ // 이벤트 객체 전달, 표준방식
+    // let e = event; // 비표준
+
+    // let result = '이벤트 명 : ' + e.type;
+    // result += '이벤트의 타겟 : ' + e.target.nodeName;
+    // $(this).text(result);
+
+    // 줄넘기 태그 넣기
+    let result = '이벤트 명 : ' + e.type + "<br>";
+    result += '이벤트의 타겟 : ' + e.target.nodeName + "<br>";
+    result += '문서 대상 좌표 : ' + e.pageX + ' : ' + e.pageY + "<br>";
+    result += '브라우저 대상 좌표 : ' + e.screenX + ' : ' + e.screenY;
+    $(this).html(result);
+  });
+
+  // 하나의 요소에 여러 이벤트 적용하기
+  // $(선택자).on({이벤트:함수, 이벤트:함수, 이벤트:함수})
+  // 마우스를 올리면 살몬색, 마우스를 내리면 보라색, 더블클릭하면 라임색으로 변경됨 
+
+  // mouseover는 이벤트를 걸지않은 요소에 포인터를 갖다대도 이벤트가 발생하는 반면, 
+  // mouseenter는 오로지 자기자신에게만 포인터가 와야 이벤트가 발생하는 차이점이 있다. 
+
+  // mouseover / mouseout의 경우에는 이벤트를 지정한 요소 + 자식 요소까지 이벤트가 적용되지만,
+  // mouseenter / mouseleave는 지정한 요소에만 적용된다. 자식은 포함하지 않는다.
+  $('div').on({
+    mouseenter : function(){ // mouseover와 비슷
+      $(this).css('background-color', 'salmon');
+    },
+    mouseleave : function(){ // mouseout와 비슷
+      $(this).css('background-color', 'purple');
+    },
+    dblclick : function(){
+      $(this).css('background-color', 'lime');
+    }
+  });
+
+</script>
+
+</body>
+</html>

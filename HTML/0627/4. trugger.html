@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <select id="sido">
+    <option value="">선택</option>
+    <option value="1">대전광역시</option>
+    <option value="2">서울특별시</option>
+    <option value="3">세종시</option>
+    <option value="4">제주도</option>
+  </select>
+  <select id="gugun"></select>
+
+  <p>클릭!!!!!!</p>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  // 시를 누르면 구가 추가돼서 출력되도록 하기
+  $('#sido').on('change', function(e,index){
+    // gugun 영역의 option요소를 생성
+
+    // alert( $(this).val() );
+    let $sidoVal = $(this).val();
+
+    let result;
+
+    if (index == 1 || $sidoVal == 1) {
+      result = "<option>대덕구</option>"
+      result += "<option>동구</option>"
+      result += "<option>서구</option>"
+      result += "<option>유성구</option>"
+      result += "<option>중구</option>"
+    }
+
+    if (index == 2 || $sidoVal == 2) {
+    result = "<option>중구</option>"
+    result += "<option>마포구</option>"
+    result += "<option>용산구</option>"
+    result += "<option>서초구</option>"
+    result += "<option>동작구</option>"
+    }
+
+    if (index == 3 || $sidoVal == 3) {
+    result = "<option>갑</option>"
+    result += "<option>을</option>"
+    }
+
+    if (index == 4 || $sidoVal == 4) {
+    result = "<option>제주시</option>"
+    result += "<option>서귀포시</option>"
+    }
+
+    // 1. append 사용시 구가 계속 늘어남, 비워주기 함께 사용
+    // $('#gugun').text("");
+    // $('#gugun').append(result);
+    
+    // 2. html 사용
+    $('#gugun').html(result);
+  });
+
+  // trigger - 대상요소에 적용되어있는 이벤트를 강제적으로 실행하는 기능
+  // #sido의 상태를change로 강제로 발동시킴
+  $('#sido').trigger('change', 2);
+  // 페이지가 로딩되는 순간 우리가 원하는 기본값을 세팅함
+  $('#sido option').eq(2).prop('selected', true);
+
+
+
+  // 사용자 정의 이벤트를 통한 trigger의 매개변수 확인
+  $('p').on('customEvent', function(e,a,b,c,){
+    // alert(a + b + c);
+    // alert(a + b); // alert는 인자 하나만 표현하므로 더하기 연산자로 묶어야 함
+                  // 배열로 받으면 각 정보가 각 매개변수로 전달
+    // alert(a.today + a.lunch + a.what); // 객체로 받으면 전체 정보가 한 매개변수로 전달되며, 내부적인 key로 접근해야 value를 표현가능
+  });
+  // 강제로 실행, 인자 하나만 전달 (여러개 보낼 때 객체 활용)
+  // $('p').trigger('customEvent', ['오늘', '점심', '뭐야?']); 
+
+  // $('p').trigger('customEvent', {today:'오늘', lunch:'점심', what:'뭐야?'}); 
+
+</script>
+
+</body>
+</html>

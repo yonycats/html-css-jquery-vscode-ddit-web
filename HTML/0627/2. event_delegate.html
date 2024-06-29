@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+      <input type="button" class="btn" value="정적버튼">
+      <input type="button" id="clear" value="해제">
+    </div>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  // 동적 이벤트 부여 방식 - delegate
+
+  // on 메서드 이전 사용방식
+  // $(선택자).delegate(selector, event, fn);
+
+  // on 메서드 이후 사용방식
+  // $(선택자).on(event, selector, fn);
+
+  // 적용해보기
+
+  // 동적버튼을 눌러도 버튼이 생성되게 하기
+  // $(선택자).delegate(selector, event, fn);
+  $('#wrapper').on('click', '.btn', function(){
+    // 동적 요소 생성
+    let $newBtn = $("<input>", { 
+      type:'button', 
+      class:"btn", 
+      value:'동적버튼'
+    });
+    $('#wrapper').append($newBtn);
+  });
+
+  // 해제 버튼 누르면 버튼 만드는 기능 없애기
+  $('#wrapper').on('click', '#clear', function(){
+    $('#wrapper').off('click');
+  });
+
+</script>
+
+</body>
+</html>

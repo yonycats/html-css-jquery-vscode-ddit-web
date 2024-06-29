@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  .clrRed {
+    color : red;
+  }
+  .bgSkyBlue {
+    background-color: skyblue;
+  }
+  .brdPlum {
+    border: 3px dashed plum;
+    border-radius: 10px;
+    padding: 10px;
+  }
+</style>
+
+</head>
+<body>
+  <input type="button" value="확인">
+
+  <p>click!!</p>
+  <p>click!!</p>
+  <p>click!!</p>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  $('input').on('click', function(){
+    // p요소의 font 색상 적용
+    // $('p').css('color', 'blue'); // addClass보다 높은 우선순위를 가짐
+    $('p').addClass('clrRed'); // 유지보수성이 높음 (디자이너가 많이 쓰는 형태)
+
+  });
+
+  /* 누를 때마다 이벤트가 적용되도록 하기 (색 넣기 <-> 색 빼기) */
+  $('p').on('click', function(){
+    // $(this).addClass('bgSkyBlue');
+
+    // if ( $(this).hasClass('bgSkyBlue') ) {
+    //   // removeClass
+    //   $(this).removeClass('bgSkyBlue');
+    // } else {
+    //   // addClass
+    //   $(this).addClass('bgSkyBlue');
+    // }
+
+    /* 위 코드를 더 간단하게 작성하기 */
+    // toggleClass : 매치된 요소들에 지정된 클래스가 적용되지 않았다면 적용하고,
+    //               이미 적용되어있다면 제거함
+    $(this).toggleClass('bgSkyBlue');
+  });
+</script>
+
+</body>
+</html>

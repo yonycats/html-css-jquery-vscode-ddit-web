@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  img {
+      width: 50px;
+  }
+
+  p {
+      border-style: solid;
+  }
+</style>
+
+</head>
+<body>
+  <h4>title 속성 정보를 이미지 생성 후 추가</h4>
+  <p title="ala.jpg">코알라</ptitle>
+  <p title="lion.jpg">사장</ptitle>
+  <p title="bara1.jpg">베라1</ptitle>
+  <p title="bara6.webp">베라6</ptitle>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+
+  $('p').on('click', function(){
+    let titleToSrc = $(this).attr('title');
+    console.log(titleToSrc);
+    
+    // 제이쿼리 방식의 동적이미지 생성 2가지 방식
+    // 1. $("문자열로 모두 구성") /  2. $("요소껍데기", {추가속성정의})
+    // $(`<img src="../../images/${titleToSrc}" alt=아무거나">`).appendTo(this);
+
+    let v_img = $(`<img src="../../images/${titleToSrc}" alt="아무고나">`);
+
+    // 자식.appendTo(부모) prependTo(), insertBefore(), insertAfter()
+    v_img.insertAfter(this);
+
+    let v_img2 = $('<img>', {
+      src : '../../images/' + titleToSrc,
+      'alt' : '대체텍스트',
+      "title" : 'jq방식이미지요소2'
+    });
+
+    // 부모.append(자식) prepend(), before(), after()
+    // after : 요소 외부 앞으로 배치
+    $(this).after(v_img);
+
+
+
+
+    // 자바스크립트 동적 이미지 생성1 - node로 생성하기(메소드 사용)
+    let v_img3 = document.createElement('img'); // <img>
+    v_img3.src = `../../images/${titleToSrc}`;
+    v_img3.alt = 'alternate';
+    v_img3.title = 'js동적이미지1';
+
+    // append(node와 DOMString), appendChild(node만)
+    // this.append(v_img3);
+    // this.appendChild(v_img3);
+
+    // this.insertBefore(v_img3, null); // null일 때 append와 동일한 위치(내부 뒤)로 추가
+
+    let v_body = document.querySelector('body');
+    console.log(v_body.childNodes);
+    v_body.insertBefore(v_img3, v_body.childNodes[3]); // 위치노드 오류
+
+    // 자바스크립트 동적 이미지 생성2 - DOMString 방식
+    let v_img4 = "<img src='../../images/lion.jpg' alt='사자크앙' title='js동적2'>";
+    // this.innerHTML += v_img4;
+    this.insertAdjacentHTML('beforeend', v_img4);
+
+  });
+
+</script>  
+
+</body>
+</html>

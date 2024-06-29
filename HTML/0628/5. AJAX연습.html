@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <button>AJAX 호출</button>
+  <button>CSV 데이터 가져오기</button>
+  <div></div>
+  
+<!-- <script>
+  // 버튼에 이벤트 주고, 그 함수에서 AJAX 구문 작성
+
+    // 1. 객체 생성하기
+    // 2. 요청 설정하기 - url정보는 test.txt로 한다.
+    // 3. 요청 전달하기
+    // 4. 응답 받기 - 화면으로 출력한다.
+
+
+// 3번과 4번의 과정을 뒤집는게 보편적인 방식임
+// 처리하는 과정이 너무 빠르면 값을 가져올 수 없을 수도 있기 때문에
+// 함수를 먼저 준비시키고 요청을 후에 하는 방식으로 시간을 벌어서 값을 확실히 받아올수 있도록 한다.
+
+// 1. 객체 생성하기
+let req = new XMLHttpRequest();
+
+// 2. 요청 설정하기
+req.open('get', 'test.txt'); // async 생략
+
+document.querySelector('button').addEventListener('click', function(){
+  console.log(req.readyState); // 응답 상태 확인
+  console.log(req.status); // 응답 상태 확인
+  
+  // 4. 응답 받기
+  if (req.readyState == 4 && req.status == 200) {
+    document.querySelector('div').innerText = req.responseText;
+  }
+});  
+
+// 3. 요청 전달하기
+req.send();
+
+
+// 객체 생성 및 요청 이후 버튼 클릭 >> 상태정보 모두 받았기 때문에 정상적으로 출력됨을 볼 수 있음
+// onreadystatechange를 쓰면 0부터 4까지 다 받는데
+// 이렇게 작성하면 요청이 끝나고 난뒤에 받는거라서 4만 받는다.
+
+// onreadystatechange를 쓰는 이유 : 2,3,4를 모두 받아야 해서 안쓰면 2번과 3번코드가 필요할 때의 경우에 대해 대응할 수 없다.
+// 안쓰고 작성하면, 로딩이 오래 걸리거나, 응답이 오지 않을 경우, 2번과 3번일 때 출력할 내용에 대해서 작성할 수가 없다.
+// 3번일 때, "현재 처리 중이니 기다려주세요." 라고 대응할 수 있다.
+
+</script> -->
+
+
+
+
+
+<!-- 선생님 방식대로 할 것 -->
+<script>
+let result;
+
+document.querySelector('button').addEventListener('click', function(){
+  // 1. 객체 생성하기
+  let req = new XMLHttpRequest();
+
+  // 2. 요청 설정하기
+  req.open('get', 'test.txt', false); // async 생략
+
+  req.onreadystatechange = function(){
+    console.log(req.readyState); // 응답 상태 확인
+    console.log(req.status); // 응답 상태 확인
+    // 4. 응답 받기
+    if (req.readyState == 4 && req.status == 200) {
+      result = req.responseText;
+      document.querySelector('div').innerText = req.responseText;
+    }
+  };
+  // 3. 요청 전달하기
+  req.send();
+  alert(">> " + result); // 동기 비동기 흐름에 따라 결과가 달라짐 (true, false)
+});
+
+
+// csv 가져오는 AJAX 작성
+let v_btns = document.querySelectorAll('button');
+
+v_btns[1].addEventListener('click', function(){
+
+  //csv가져오는 AJAC작성
+
+  // 1. 객체 생성하기
+  let req = new XMLHttpRequest();
+  // 2. 요청 설정 - url >> csv 파일 경로
+  req.open('get', 'sample/test.csv')
+  // 4. 응답 받기 - csv 파일 정보 콘솔로 확인
+  req.onreadystatechange = function(){
+    if(req.readyState == 4 && req.status == 200){
+      console.log(req.responseText);
+
+      f_csv(req.responseText);
+    }
+  }
+  // 3. 요청 전달
+  req.send();
+});
+
+
+function f_csv(p_csv){
+  console.log(p_csv);
+
+  // 행(row)으로 정보 나누기
+  let v_lines = p_csv.split("\r\n");
+  console.log(v_lines);
+
+  // 문자열로 테이블 요소 생성하기
+  let v_tbl = "<table border=1>";
+  
+  for(let i=0; i<v_lines.length; i++) {
+    v_tbl += "<tr>";
+
+    // 각 행정보에서 각 셀정보로 분리
+    let v_cell = v_lines[i].split(",");
+    // console.log(v_cell);
+
+    for(let i=0; i<v_cell.length; i++) {
+    v_tbl += `<td>${v_cell[i]}</td>`;
+    };
+
+    v_tbl += "</tr>";
+  }
+  v_tbl += "</table>";
+
+  document.querySelector('div').innerHTML = v_tbl;
+
+};
+</script>
+
+</body>
+</html>

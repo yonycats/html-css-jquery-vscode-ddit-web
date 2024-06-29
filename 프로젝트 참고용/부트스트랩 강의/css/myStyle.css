@@ -1,0 +1,51 @@
+
+
+body {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --gold : gold;
+  --black : black;
+  --orange : orange
+}
+
+/* 캐로셀의 이미지 사이즈 스타일링 */
+#topCrousel .carousel-item:nth-of-type(1) {
+  background: url(../images/KakaoTalk_20240623_125051413_01.jpg) no-repeat center /cover;
+  height: 100vh;
+}
+#topCrousel .carousel-item:nth-of-type(2) {
+  background: url(../images/KakaoTalk_20240614_120114738_01.jpg) no-repeat center /cover;
+  height: 100vh;
+}
+#topCrousel .carousel-item:nth-of-type(3) {
+  background: url(../images/KakaoTalk_20240616_100054479.jpg) no-repeat center /cover;
+  height: 100vh;
+}
+
+/* 캐로셀 안의 캡션 대신에 넣은 이미지 위치 맞추기 */
+#topCrousel .carousel-caption {
+  position: absolute;
+  border: 1px solid red;
+}
+topCrousel .carousel-item:nth-of-type(1) {
+  bottom: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

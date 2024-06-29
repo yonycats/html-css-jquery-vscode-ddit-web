@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+  }
+  button {
+    display: none;
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- 마우스를 올리면 뒤 이미지(data-src)로 이미지 변경되도록 하기 -->
+  <img src="../../images/bara1.jpg" data-src="../../images/cat.png">
+  <img src="../../images/bara2.jpg" data-src="../../images/나무표효.jpg">
+  <img src="../../images/bara4.jfif" data-src="../../images/wok1.jfif">
+  <img src="../../images/bara6.webp" data-src="../../images/양요섭2.png">
+  <button>보이기</button>
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+  let v_src;
+
+  $('img').on({
+    mouseover : function(){
+      // 다른 이미지 보여주기
+
+      // 원본정보
+      v_src = $(this).attr('src');
+
+      // 사용자정의속성 - data(data-제외한 속성명) or attr(full속성명)
+      let v_src2 = $(this).data('src');
+      console.log(v_src2);
+
+      // src2의 정보를 src속성에 대입하기 - attr(속성명, 속성값)
+      $(this).attr('src', v_src2);
+    },
+    mouseout: function(){
+      // 원본 이미지 보여주기
+      $(this).attr('src', v_src);
+    },
+    dblclick : function(){
+      // 이미지 요소 숨기기 - hide()
+      // 모든 이미지요소 숨겨졌을 때 버튼 보이기 - show(),
+      // 모든 요소 숨겨짐 상태 조건 : visible 필터 및 length 속성 사용
+      // $(this).hide(); // 한번에 없어짐
+      $(this).hide('src'); // 스르륵 효과가 들어가서 없어짐
+
+      console.log ( $('img:visible').length );
+
+      if ( $('img:visible').length == 1 ) {
+      // 버튼 보이기 : display = 요소의 원 레벨정보 >> show()
+      $('button').show();
+      } 
+    }
+  });
+
+  // 버튼 클릭 이벤트 >> 모든 이미지 요소 보이기 및 버튼 숨기기 처리
+  $('button').on('click', function(){
+    $('img').show();
+    $(this).hide();
+  });
+
+
+</script>
+
+</body>
+</html>

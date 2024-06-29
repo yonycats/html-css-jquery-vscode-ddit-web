@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+<style>
+  img {
+    width: 100px;
+    height: 100px;
+  }
+</style>
+
+</head>
+<body>
+  <h4>
+  attr() 요소의 속성 정보 얻기/설정하기<br>
+  [파일 명 추출 후 title 속성으로 설정하기 예제]
+  </h4>
+
+  <img src="../../images/ala.jpg" alt="a">
+  <img src="../../images/bara1.jpg" alt="b">
+  <img src="../../images/bara2.jpg" alt="c">
+  <img src="../../images/bara4.jfif" alt="d">
+  <img src="../../images/bara6.webp" alt="e">
+
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script>
+
+// GET >> html(), val(), attr() 공통적으로 첫번째 항목만 반환
+// console.log( $('img').attr('src') ); // 이미지 요소의 src 속성값
+
+// SET >> 모든 메소드가 일괄적용됨
+// $('img').attr('alt', '대체텍스트');
+
+// 파일 명 추출 후 title 속성으로 설정하기
+$('img').attr('title', function(i,v){
+  // console.log(i,v); // 안나옴
+  // console.log(this);
+
+  let v_src = $(this).attr('src');
+  // console.log(v_src);
+
+  // ex) ../../images/ala.jpg
+  // '/'가 마지막으로 있는 인덱스의 값 반환
+  // 시작 위치 = '/'가 마지막으로 있는 인덱스의 값 + 1
+  let startIdx = v_src.lastIndexOf('/')+1;
+  // '.'가 마지막으로 있는 인덱스의 값 반환, 마지막 위치로 지정
+  let endIdx = v_src.lastIndexOf('.');
+
+  // 파일명 추출하기 substring(str, end), slice(str, end)
+  let fileNm = v_src.slice(startIdx, endIdx);
+  console.log(fileNm);
+
+  return fileNm;
+});
+
+// 속성 제거
+// $('img').eq(2).removeAttr('src');
+
+// 속성 변경
+$('img').eq(2).attr({
+  'src' : '../../images/cat.png',
+  'alt' : '야옹이',
+  'title' : '나는타이틀이다',
+  'style' : 'width : 250px'
+});
+
+</script>
+
+</body>
+</html>
