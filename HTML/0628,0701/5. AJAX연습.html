@@ -5,9 +5,11 @@
   <title>Document</title>
 </head>
 <body>
-
+  <!-- CSV, JSON, XML 데이터 가져오기 -->
   <button>AJAX 호출</button>
-  <button>CSV 데이터 가져오기</button>
+  <button>CSV 가져오기</button>
+  <button>JSON 가져오기</button>
+  <button>XML 가져오기</button>
   <div></div>
   
 <!-- <script>
@@ -83,6 +85,11 @@ document.querySelector('button').addEventListener('click', function(){
 });
 
 
+
+
+
+
+
 // csv 가져오는 AJAX 작성
 let v_btns = document.querySelectorAll('button');
 
@@ -106,6 +113,7 @@ v_btns[1].addEventListener('click', function(){
   req.send();
 });
 
+let v_div = document.querySelector('div');
 
 function f_csv(p_csv){
   console.log(p_csv);
@@ -132,9 +140,127 @@ function f_csv(p_csv){
   }
   v_tbl += "</table>";
 
-  document.querySelector('div').innerHTML = v_tbl;
-
+  // 함수의 바깥쪽으로 빼내서 다른 함수에서도 쓸 수 있도록 할 것임
+  // document.querySelector('div').innerHTML = v_tbl; 
+  v_div.innerHTML = v_tbl
 };
+
+
+
+
+
+
+
+// JSON 가져오는 AJAX 작성
+v_btns[2].addEventListener('click', function(){
+  // 1. 객체생성 - XMLHttpRequest
+  let req = new XMLHttpRequest();
+
+  // 2. 요청설정 - open(method, url, async)
+  req.open('get', 'sample/test.json', true);
+
+  // 4. 응답받기 - onreadystatechange, readyState, status
+  req.onreadystatechange = function(){
+    if (req.readyState == 4 && req.status == 200) {
+      console.log(req.responseText); // 문자열 -> 객체로 변환 처리해야 할 필요가 있음
+      // console.log(JSON.parse(req.responseText)); // 제이슨 객체로 변환
+
+      let jsonObj = JSON.parse(req.responseText);
+      f_json(jsonObj);
+    }
+  };
+
+  // 3. 요청전달 - send()
+  req.send();
+});
+
+function f_json(p_obj) {
+  console.log("함수로 잘 넘어온 객체 >> ", p_obj);
+
+  // Object 내장객체의 keys()-키만, values()-밸류만, entries()-키와 밸류의 값을 받는 메소드
+  // Object.values(p_obj)[0]; // 밸류값의 키 정보(이름, 종류,, 별명) 뽑아내기
+  let objVal = Object.values(p_obj)[0];
+  let objKey = Object.keys(objVal);
+  // console.log(objKey);
+
+  // 테이블 형태로 정보 출력
+  let v_tbl = "<table border=1>";
+  // v_tbl += "<tr><td>" + objKey[0] + "</td><td>" + objKey[1] + "</td><td>" + objKey[2] + "</td></tr>" // 하드코딩 없애기
+  v_tbl += `<tr><td>${objKey[0]}</td><td>${objKey[1]}</td><td>${objKey[2]}</td></tr>` // 백팁사용버전
+
+  for (let i=0; i<p_obj.length; i++) {
+    // console.log(p_obj[i].name); // 제이슨 객체의 길이=4만큼 돌아감
+
+    v_tbl += "<tr><td>" + p_obj[i].name + "</td>";
+    v_tbl += `<td>${p_obj[i].type}</td>`;
+    v_tbl += "<td>" + p_obj[i].alias + "</td></tr>";
+  }
+
+  v_tbl += "</table>";
+
+  v_div.insertAdjacentHTML('beforeend', v_tbl);
+}
+
+
+
+
+
+
+
+
+// XML 가져오는 AJAX 작성
+v_btns[3].addEventListener('click', function(){
+  // 1. 객체 생성
+  let req = new XMLHttpRequest();
+
+  // 2. 요청 설정
+  req.open('get', 'sample/test.xml', true);
+
+  // 4. 응답받기
+  req.onreadystatechange = function(){
+    if(req.readyState == 4 && req.status == 200) {
+      // console.log(req.responseXML);
+      f_xml(req.responseXML);
+    }
+  }
+
+  // 3. 요청 전달
+  req.send();
+});
+
+function f_xml(p_xml) {
+  // console.log(p_xml);
+  // console.log(p_xml.children[0]);
+
+  // 이 둘은 같은 내용을 가져옴, 둘 중에 하나를 쓰면 됨
+  // console.log(p_xml.children[0].children);
+  // console.log(p_xml.querySelectorAll('friend'));
+
+  let v_friends = p_xml.querySelectorAll('friend');
+
+  let v_tbl = "<table border=1>"
+
+    for (let i=0; i<v_friends.length; i++) {
+      v_tbl += "<tr>"
+  
+      let child = v_friends[i].children;
+      console.log(">>>", child);
+
+      for (let i=0; i<child.length; i++) {
+        // 3개 중에 하나 사용
+        // v_tbl += "<td>" + child[i].textContent + "</td>" // innetText 못씀
+        // v_tbl += "<td>" + child[i].firstChild.data + "</td>"
+        v_tbl += "<td>" + child[i].firstChild.nodeValue + "</td>"
+      }
+
+      v_tbl += "</tr>"
+    }
+
+    v_tbl += "</table>"
+    
+    v_div.insertAdjacentHTML('beforeend', v_tbl);
+};
+
 </script>
 
 </body>
